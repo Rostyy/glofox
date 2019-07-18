@@ -19,7 +19,6 @@ export class BeerListComponent implements OnInit {
 
   ngOnInit() {
     this.beers$ = this.beerService.getBeers();
-    this.matchedBeerService.changeBeer$.subscribe( b => console.log('selected ', b))
   }
 
 }

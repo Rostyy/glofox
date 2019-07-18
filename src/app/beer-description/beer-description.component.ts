@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/index';
 
 import { BeerService } from '../services/api/beer.service';
-import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
 import { Beer } from '../../models';
 
 @Component({
@@ -15,15 +14,10 @@ export class BeerDescriptionComponent implements OnInit {
   beer$: Observable<Beer>;
   count = 0;
 
-  constructor(private beerService: BeerService, private matchedBeerService: MatchedBeerService) { }
+  constructor(private beerService: BeerService) { }
 
   ngOnInit() {
     this.getRandomBeer();
-
-    this.beer$.subscribe((beer: Beer) => {
-      console.log('click on btn', beer);
-      this.matchedBeerService.changeBeer(beer);
-    });
   }
 
   getRandomBeer() {
