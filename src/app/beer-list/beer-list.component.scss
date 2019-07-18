@@ -8,6 +8,10 @@
   &:hover {
     background-color: #d3d3d3;
   }
+
+  &.selected-beer {
+    background-color: cornflowerblue;
+  }
 }
 
 .image-section {

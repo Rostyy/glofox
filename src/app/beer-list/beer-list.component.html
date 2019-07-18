@@ -1,6 +1,6 @@
 <div *ngIf="(beers$ | async) as beers">
   <div *ngFor="let beer of beers">
-    <div *ngIf="beer.name && beer.description" class="beer-card">
+    <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">
       <div class="image-section">
         <img src="{{beer.image_url}}" alt="beer image">
       </div>
