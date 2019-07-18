@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
@@ -33,6 +34,8 @@ export class BeerService {
    * @returns {Observable<Beer>}
    */
   getRandomBeer(): Observable<Beer> {
-    return this.http.get<Beer>(`${environment.baseUrl}/beers/random`);
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random`).pipe(
+      map((beers: Beer[]) => beers[0])
+    );
   }
 }

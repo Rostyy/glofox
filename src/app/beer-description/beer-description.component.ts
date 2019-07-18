@@ -11,8 +11,12 @@ import { Beer } from '../../models';
 })
 export class BeerDescriptionComponent implements OnInit {
 
+  beer$: Observable<Beer>;
+
   constructor(private beerService: BeerService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.beer$ = this.beerService.getRandomBeer();
+  }
 
 }

@@ -1,0 +1,29 @@
+$image-size: 120px;
+
+.beer-card {
+  display: flex;
+  padding: 5px 10px;
+  border: 1px solid black;
+}
+
+.left-section {
+  margin-right: 20px;
+  min-width: $image-size + 20px;
+}
+
+.description-buttons {
+  display: flex;
+  align-content: center;
+}
+
+.description {
+  display: flex;
+  align-self: center;
+  margin-right: 20px;
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
