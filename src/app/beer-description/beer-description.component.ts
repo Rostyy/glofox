@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs/index';
 
 import { BeerService } from '../services/api/beer.service';
+import { Beer } from '../../models';
 
 @Component({
   selector: 'glofox-beer-description',
@@ -9,14 +11,12 @@ import { BeerService } from '../services/api/beer.service';
 })
 export class BeerDescriptionComponent implements OnInit {
 
+  beers$: Observable<Beer[]>;
+
   constructor(private beerService: BeerService) { }
 
   ngOnInit() {
-    this.getBeers().subscribe((beers: any) => console.log(beers));
-  }
-
-  getBeers() {
-    return this.beerService.getBeers();
+    this.beers$ = this.beerService.getBeers();
   }
 
 }
