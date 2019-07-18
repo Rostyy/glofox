@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs/index';
+import { Observable } from 'rxjs/index';
 
 import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
@@ -11,12 +11,8 @@ import { Beer } from '../../models';
 })
 export class BeerDescriptionComponent implements OnInit {
 
-  beers$: Observable<Beer[]>;
-
   constructor(private beerService: BeerService) { }
 
-  ngOnInit() {
-    this.beers$ = this.beerService.getBeers();
-  }
+  ngOnInit() { }
 
 }
