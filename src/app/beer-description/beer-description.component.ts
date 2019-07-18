@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BeerService } from '../services/api/beer.service';
+
 @Component({
   selector: 'glofox-beer-description',
   templateUrl: './beer-description.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeerDescriptionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private beerService: BeerService) { }
 
   ngOnInit() {
+    this.getBeers().subscribe((beers: any) => console.log(beers));
+  }
+
+  getBeers() {
+    return this.beerService.getBeers();
   }
 
 }
