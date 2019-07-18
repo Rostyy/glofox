@@ -1,14 +1,15 @@
-<div *ngIf="(beer$ | async) as beer" class="beer-card">
-  <div class="left-section">
-    <h3>{{beer.name}}</h3>
-    <img src="{{beer.image_url}}" alt="beer image">
-  </div>
-  <div class="description-buttons">
-    <div class="description">{{beer.description}}</div>
-    <div class="buttons-section">
-      <button>Another Beer</button>
-      <button>Random non alcoholic beer</button>
+<div *ngIf="(beer$ | async) as beer">
+  <div *ngIf="beer.name && beer.description" class="beer-card">
+    <div class="left-section">
+      <h3>{{beer.name}}</h3>
+      <img src="{{beer.image_url}}" alt="beer image">
+    </div>
+    <div class="description-buttons">
+      <div class="description">{{beer.description}}</div>
+      <div class="buttons-section">
+        <button (click)="getAnotherBeer()">Another Beer</button>
+        <button (click)="getRandomBeer()">Random non alcoholic beer</button>
+      </div>
     </div>
   </div>
-
 </div>

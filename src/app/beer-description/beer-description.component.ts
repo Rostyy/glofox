@@ -12,11 +12,22 @@ import { Beer } from '../../models';
 export class BeerDescriptionComponent implements OnInit {
 
   beer$: Observable<Beer>;
+  count = 0;
 
   constructor(private beerService: BeerService) { }
 
   ngOnInit() {
+    this.getRandomBeer();
+
+    this.beer$.subscribe(b => console.log(b)); // TODO delete this
+  }
+
+  getRandomBeer() {
     this.beer$ = this.beerService.getRandomBeer();
   }
 
+  getAnotherBeer() {
+    this.count++;
+    this.beer$ = this.beerService.getSingleBeer(this.count);
+  }
 }

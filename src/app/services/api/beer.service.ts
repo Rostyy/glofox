@@ -25,8 +25,10 @@ export class BeerService {
    * Get single beer
    * @returns {Observable<Beer>}
    */
-  getSingleBeer(): Observable<Beer> {
-    return this.http.get<Beer>(`${environment.baseUrl}/beers/1`);
+  getSingleBeer(count: number): Observable<Beer> {
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/${count}`).pipe(
+      map((beers: Beer[]) => beers[0])
+    );
   }
 
   /**
