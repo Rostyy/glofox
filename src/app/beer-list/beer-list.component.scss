@@ -1,7 +1,7 @@
 @import "variables";
 
 .wrapper {
-  margin-top: $card-height + $body-margin + 2*$card-padding + 38px + 3*$main-gap; // 38px - search height
+  margin-top: $card-height + $body-margin + 2*$main-gap + 38px + 3*$main-gap; // 38px - search height
 }
 
 .beer-card {
