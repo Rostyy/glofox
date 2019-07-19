@@ -9,3 +9,17 @@ input[type="text"] {
   @include input-height(30px);
   padding-left: 12px;
 }
+
+form {
+  margin: 20px 0;
+  display: flex;
+
+  input {
+    margin-right: 20px;
+  }
+
+  .radio-btns {
+    display: flex;
+    flex-direction: column;
+  }
+}

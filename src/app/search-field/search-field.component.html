@@ -1,13 +1,15 @@
 <form [formGroup]="form" (change)="search()">
   <input #searchBox type="text" (input)="search(searchBox.value)" formControlName="term" placeholder="Search beer ...">
-  <label>
-    <input type="radio" value="name" formControlName="radioButtonValue">
-    <span>By Name</span>
-  </label>
-  <label>
-    <input type="radio" value="description" formControlName="radioButtonValue">
-    <span>By Description</span>
-  </label>
+  <div class="radio-btns">
+    <label>
+      <input type="radio" value="name" formControlName="radioButtonValue">
+      <span>By Name</span>
+    </label>
+    <label>
+      <input type="radio" value="description" formControlName="radioButtonValue">
+      <span>By Description</span>
+    </label>
+  </div>
 </form>
 <div *ngIf="!form.valid" class="error-msg">Only alphanumeric characters, numbers and hyphens allowed</div>
 
