@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class BeerService {
   getSingleBeer(count: number): Observable<Beer> {
     return this.http.get<Beer[]>(`${environment.baseUrl}/beers/${count}`).pipe(
       map((beers: Beer[]) => beers[0]),
-      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer))
+      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
+      shareReplay()
     );
   }
 
@@ -40,7 +42,8 @@ export class BeerService {
   getRandomBeer(): Observable<Beer> {
     return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random`).pipe(
       map((beers: Beer[]) => beers[0]),
-      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer))
+      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
+      shareReplay()
     );
   }
 }
