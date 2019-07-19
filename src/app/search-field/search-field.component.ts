@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../services/search/search.service';
+import { SearchService} from '../services/search/search.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,22 +9,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SearchFieldComponent implements OnInit {
 
-  radioButtonsForm: FormGroup;
+  form: FormGroup;
 
   constructor(private searchService: SearchService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.radioButtonsForm = this.fb.group({
-      searchProperty: ['name', Validators.required]
+    this.form = this.fb.group({
+      term: ['', Validators.required],
+      radioButtonValue: ['name', Validators.required]
     });
+    this.search();
   }
 
-  search(searchTerm: string) {
+  search() {
+    const searchTerm = {
+      term: this.form.value.term,
+      radioButtonValue: this.form.value.radioButtonValue
+    };
     this.searchService.changeTerm(searchTerm);
   }
-
-  handleChange() {
-    console.log(this.radioButtonsForm.value.searchProperty);
-  }
-
 }

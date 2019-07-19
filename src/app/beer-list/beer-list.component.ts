@@ -15,7 +15,6 @@ import {SearchService} from '../services/search/search.service';
 export class BeerListComponent implements OnInit {
 
   beers$: Observable<Beer[]>;
-  searchProperty = 'name';
 
   constructor(private beerService: BeerService,
               public matchedBeerService: MatchedBeerService,
