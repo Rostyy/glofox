@@ -1,1 +1,15 @@
-<input #searchBox type="text" (input)="search(searchBox.value)" placeholder="Search country ...">
+<div class="wrapper">
+  <input #searchBox type="text" (input)="search(searchBox.value)" placeholder="Search beer ...">
+
+  <form [formGroup]="radioButtonsForm" (change)="handleChange($event)">
+    <label>
+      <input type="radio" value="name" formControlName="searchProperty">
+      <span>By Name</span>
+    </label>
+    <label>
+      <input type="radio" value="description" formControlName="searchProperty">
+      <span>By Description</span>
+    </label>
+  </form>
+</div>
+

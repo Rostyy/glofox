@@ -7,6 +7,7 @@ import { BeerDescriptionComponent } from './beer-description/beer-description.co
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { SearchByPipe } from './pipes/search-by.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { SearchByPipe } from './pipes/search-by.pipe';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
