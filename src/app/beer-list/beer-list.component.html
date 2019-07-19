@@ -1,3 +1,5 @@
+<glofox-search-field></glofox-search-field>
+
 <div *ngIf="(beers$ | async) as beers">
   <div *ngFor="let beer of beers">
     <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">

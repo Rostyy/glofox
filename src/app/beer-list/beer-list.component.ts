@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/index';
 import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
 import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
+import {SearchService} from '../services/search/search.service';
 
 
 @Component({
@@ -15,10 +16,14 @@ export class BeerListComponent implements OnInit {
 
   beers$: Observable<Beer[]>;
 
-  constructor(private beerService: BeerService, public matchedBeerService: MatchedBeerService) { }
+  constructor(private beerService: BeerService,
+              public matchedBeerService: MatchedBeerService,
+              private searchService: SearchService
+  ) { }
 
   ngOnInit() {
     this.beers$ = this.beerService.getBeers();
+    this.searchService.searchTerms$.subscribe(w => console.log(w));
   }
 
 }
