@@ -26,6 +26,8 @@ export class SearchFieldComponent implements OnInit {
       term: this.form.value.term,
       radioButtonValue: this.form.value.radioButtonValue
     };
-    this.searchService.changeTerm(searchTerm);
+    if (this.form.valid) {
+      this.searchService.changeTerm(searchTerm);
+    }
   }
 }
