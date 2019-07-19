@@ -5,11 +5,12 @@
   </div>
   <div class="description-buttons">
     <div class="description">{{(beer$ | async)?.description}}</div>
+    <glofox-mini-loader *ngIf="!(beer$ | async)"></glofox-mini-loader>
     <div class="buttons-section">
       <button (click)="getAnotherBeer()">Another Beer</button>
       <button (click)="getRandomBeer()">Random non alcoholic beer</button>
     </div>
   </div>
 </div>
-
 <glofox-search-field></glofox-search-field>
+

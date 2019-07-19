@@ -7,6 +7,7 @@ import { BeerDescriptionComponent } from './beer-description/beer-description.co
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { SearchByPipe } from './pipes/search-by.pipe';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -20,7 +21,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
       ]
     }).compileComponents();
   }));

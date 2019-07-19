@@ -7,7 +7,8 @@ import { BeerDescriptionComponent } from './beer-description/beer-description.co
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { SearchByPipe } from './pipes/search-by.pipe';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
