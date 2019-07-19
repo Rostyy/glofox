@@ -2,7 +2,7 @@
 
 .error-msg {
   color: $red-color;
-  margin: 5px 0;
+  margin: -$main-gap/2 0 0 $main-gap;
 }
 
 input[type="text"] {
@@ -11,11 +11,12 @@ input[type="text"] {
 }
 
 form {
-  margin: 20px 0;
+  padding: $main-gap;
   display: flex;
+  background-color: $white-color;
 
   input {
-    margin-right: 20px;
+    margin-right: 20px
   }
 
   .radio-btns {
