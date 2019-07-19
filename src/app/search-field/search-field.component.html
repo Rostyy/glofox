@@ -9,5 +9,7 @@
     <span>By Description</span>
   </label>
 </form>
+<div *ngIf="!form.valid" class="error-msg">Only alphanumeric characters, numbers and hyphens allowed</div>
+
 
 
