@@ -15,7 +15,7 @@ export class SearchFieldComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      term: ['', Validators.required],
+      term: ['', Validators.pattern('^[0-9A-Za-z\\s\\-]+$')],
       radioButtonValue: ['name', Validators.required]
     });
     this.search();
@@ -26,6 +26,8 @@ export class SearchFieldComponent implements OnInit {
       term: this.form.value.term,
       radioButtonValue: this.form.value.radioButtonValue
     };
-    this.searchService.changeTerm(searchTerm);
+    if (this.form.valid) {
+      this.searchService.changeTerm(searchTerm);
+    }
   }
 }

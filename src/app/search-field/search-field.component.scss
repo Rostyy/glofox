@@ -1,1 +1,26 @@
+@import "mixins";
 
+.error-msg {
+  color: $red-color;
+  margin: -$main-gap/2 0 0 $main-gap;
+}
+
+input[type="text"] {
+  @include input-height(30px);
+  padding-left: 12px;
+}
+
+form {
+  padding: $main-gap;
+  display: flex;
+  background-color: $white-color;
+
+  input {
+    margin-right: 20px
+  }
+
+  .radio-btns {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,12 +1,18 @@
 @import "variables";
 
-.beer-card {
-  display: flex;
-  padding: 5px 10px;
-  border: 1px solid black;
+.wrapper {
+  margin-top: $card-height + $body-margin + 2*$main-gap + 38px + 3*$main-gap; // 38px - search height
+}
 
+.beer-card {
+  background-color: $white-color;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  display: flex;
+  padding: 20px;
+  margin-bottom: $main-gap;
   &:hover {
-    background-color: #d3d3d3;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.32);
   }
 
   &.selected-beer {
@@ -16,7 +22,7 @@
 
 .image-section {
   margin-right: 20px;
-  min-width: $image-size + 20px;
+  min-width: $image-size + $main-gap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,5 +37,4 @@
     align-items: center;
   }
 }
-
 
