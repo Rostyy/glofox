@@ -1,3 +1,12 @@
+[APP IS HERE](https://glofox.netlify.com/)
+
+### TASK SUMMARY
+1. App was created with the help of framework Angular8.
+2. In this app user can fetch beers from [PUNKAPI](https://punkapi.com/), filter them by name or description; random beer can be chosen.
+3. Unit tests are provided and passed successfully.
+4. Additionally app was deployed on Netlify [deployed app](https://glofox.netlify.com/)
+5. App was followed by DRY and KISS principles
+
 # Glofox
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
