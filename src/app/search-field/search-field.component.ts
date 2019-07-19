@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../services/search/search.service';
+import { SearchService} from '../services/search/search.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'glofox-search-field',
@@ -8,13 +9,23 @@ import { SearchService } from '../services/search/search.service';
 })
 export class SearchFieldComponent implements OnInit {
 
-  constructor(private searchService: SearchService) { }
+  form: FormGroup;
+
+  constructor(private searchService: SearchService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      term: ['', Validators.required],
+      radioButtonValue: ['name', Validators.required]
+    });
+    this.search();
   }
 
-  search(searchTerm: string) {
+  search() {
+    const searchTerm = {
+      term: this.form.value.term,
+      radioButtonValue: this.form.value.radioButtonValue
+    };
     this.searchService.changeTerm(searchTerm);
   }
-
 }

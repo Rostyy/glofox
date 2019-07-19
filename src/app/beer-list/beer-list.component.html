@@ -1,7 +1,8 @@
 <glofox-search-field></glofox-search-field>
 
 <div *ngIf="(beers$ | async) as beers">
-  <div *ngFor="let beer of beers">
+  <div *ngFor="let beer of beers |
+       searchBy:(searchService.searchTerms$ | async)?.radioButtonValue:(searchService.searchTerms$ | async)?.term">
     <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">
       <div class="image-section">
         <img src="{{beer.image_url}}" alt="beer image">

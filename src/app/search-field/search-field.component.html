@@ -1,1 +1,13 @@
-<input #searchBox type="text" (input)="search(searchBox.value)" placeholder="Search country ...">
+<form [formGroup]="form" (change)="search()">
+  <input #searchBox type="text" (input)="search(searchBox.value)" formControlName="term" placeholder="Search beer ...">
+  <label>
+    <input type="radio" value="name" formControlName="radioButtonValue">
+    <span>By Name</span>
+  </label>
+  <label>
+    <input type="radio" value="description" formControlName="radioButtonValue">
+    <span>By Description</span>
+  </label>
+</form>
+
+

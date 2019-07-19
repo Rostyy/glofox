@@ -18,12 +18,11 @@ export class BeerListComponent implements OnInit {
 
   constructor(private beerService: BeerService,
               public matchedBeerService: MatchedBeerService,
-              private searchService: SearchService
+              public searchService: SearchService
   ) { }
 
   ngOnInit() {
     this.beers$ = this.beerService.getBeers();
-    this.searchService.searchTerms$.subscribe(w => console.log(w));
   }
 
 }
