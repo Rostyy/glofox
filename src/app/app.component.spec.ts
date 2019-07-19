@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BeerDescriptionComponent } from './beer-description/beer-description.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
-import { SearchByPipe } from './pipes/search-by.pipe';
 import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
@@ -16,8 +15,7 @@ describe('AppComponent', () => {
         AppComponent,
         BeerDescriptionComponent,
         BeerListComponent,
-        SearchFieldComponent,
-        SearchByPipe
+        SearchFieldComponent
       ],
       imports: [
         HttpClientTestingModule,
