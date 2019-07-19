@@ -5,14 +5,27 @@ import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
 
 @Component({
-  selector: 'glofox-beer-description',
+selector: 'glofox-beer-description',
   templateUrl: './beer-description.component.html',
   styleUrls: ['./beer-description.component.scss']
 })
 export class BeerDescriptionComponent implements OnInit {
 
+  beer$: Observable<Beer>;
+  count = 0;
+
   constructor(private beerService: BeerService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getRandomBeer();
+  }
 
+  getRandomBeer() {
+    this.beer$ = this.beerService.getRandomBeer();
+  }
+
+  getAnotherBeer() {
+    this.count++;
+    this.beer$ = this.beerService.getSingleBeer(this.count);
+  }
 }
