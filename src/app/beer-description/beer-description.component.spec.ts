@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BeerDescriptionComponent } from './beer-description.component';
+import { SearchFieldComponent } from '../search-field/search-field.component';
 
 describe('BeerDescriptionComponent', () => {
   let component: BeerDescriptionComponent;
@@ -9,8 +11,8 @@ describe('BeerDescriptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeerDescriptionComponent ],
-      imports: [ HttpClientTestingModule ]
+      declarations: [ BeerDescriptionComponent, SearchFieldComponent ],
+      imports: [ HttpClientTestingModule, ReactiveFormsModule ]
     })
     .compileComponents();
   }));
