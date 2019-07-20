@@ -20,7 +20,9 @@ export class BeerService {
    * @returns {Observable<Beer[]>}
    */
   getBeers(currentPage = INIT_PAGE, beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${environment.baseUrl}/beers?page=${currentPage}&per_page=${beersPerPage}`);
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers?page=${currentPage}&per_page=${beersPerPage}`).pipe(
+      shareReplay()
+    );
   }
 
   /**

@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/index';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/index';
 
-import { BeerService } from '../services/api/beer.service';
-import { Beer } from '../../models';
 import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
+import { BeerService } from '../services/api/beer.service';
+import { PageSelectionService } from '../services/page-selection/page-selection.service';
 import { SearchService } from '../services/search/search.service';
 import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
-import { PageSelectionService } from '../services/page-selection/page-selection.service';
+import { Beer } from '../../models';
 
 @Component({
   selector: 'glofox-beer-list',
   templateUrl: './beer-list.component.html',
   styleUrls: ['./beer-list.component.scss']
 })
-export class BeerListComponent extends AlcoholCheck implements OnInit {
+export class BeerListComponent extends AlcoholCheck implements OnInit, OnDestroy {
 
   beers$: Observable<Beer[]>;
+  pageSubscription: Subscription;
 
   constructor(private beerService: BeerService,
               public matchedBeerService: MatchedBeerService,
@@ -26,9 +27,13 @@ export class BeerListComponent extends AlcoholCheck implements OnInit {
   }
 
   ngOnInit() {
-    this.pageSelectionService.changePage$.subscribe((currentPage: number) => {
+    this.pageSubscription = this.pageSelectionService.changePage$.subscribe((currentPage: number) => {
       this.beers$ = this.beerService.getBeers(currentPage);
-    })
+    });
+  }
+
+  ngOnDestroy() {
+    this.pageSubscription.unsubscribe();
   }
 
 }
