@@ -2,7 +2,7 @@
 
 .wrapper {
   position: fixed;
-  top: $card-height + $body-margin + 2*$main-gap + 38px + 2*$main-gap;
+  top: $card-height + $body-margin + 2*$main-gap + 38px + 2*$main-gap + 37px + 15px; // 38 - search height; 37 - pagination height
   left: 0;
   right: 0;
   bottom: 0;

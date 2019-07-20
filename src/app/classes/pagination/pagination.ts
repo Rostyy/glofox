@@ -12,15 +12,8 @@ export abstract class Pagination {
 
   constructor() {}
 
-  abstract getBeers(): any;
 
-  pageBack() {
-    if (this.page) {
-      this.page --;
-    }
-  }
+  abstract pageBack(): void;
 
-  pageForward() {
-    this.page ++;
-  }
+  abstract pageForward(): void;
 }

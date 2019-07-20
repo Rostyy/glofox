@@ -1,10 +1,18 @@
 @import "variables";
 @import "mixins";
 
+:host {
+  position: absolute;
+  top: $card-height + $body-margin + 2*$main-gap + 38px + 2*$main-gap;
+  padding: 0 $main-gap 10px $main-gap;
+}
+
 button {
   @include button-style($pink-color);
 }
 
-button + button {
-  margin-left: 20px;
+.current-page {
+  color: $pink-color;
+  font-weight: 600;
+  margin: 0 20px;
 }

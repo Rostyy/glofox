@@ -1,2 +1,3 @@
-<button (click)="pageBack()">&#10094;</button>
+<button (click)="pageBack()" [disabled]="page === 1">&#10094;</button>
+<span class="current-page">{{page}}</span>
 <button (click)="pageForward()">&#10095;</button>

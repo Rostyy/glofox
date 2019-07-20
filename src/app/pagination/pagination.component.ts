@@ -12,11 +12,16 @@ export class PaginationComponent extends Pagination implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  pageBack() {
+    if (this.page > 1) {
+      this.page --;
+    }
   }
 
-  getBeers() {
-    console.log('getBeers');
+  pageForward() {
+    this.page ++;
   }
 
 }
