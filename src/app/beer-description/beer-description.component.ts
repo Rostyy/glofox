@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/index';
 
 import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
-import { AlcoholCheck } from '../classes/alcohol-check';
+import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
 
 @Component({
 selector: 'glofox-beer-description',

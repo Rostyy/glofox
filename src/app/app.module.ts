@@ -8,13 +8,15 @@ import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BeerDescriptionComponent,
     BeerListComponent,
-    SearchFieldComponent
+    SearchFieldComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

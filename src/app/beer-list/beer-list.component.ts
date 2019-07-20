@@ -5,8 +5,7 @@ import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
 import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
 import { SearchService } from '../services/search/search.service';
-import { AlcoholCheck } from '../classes/alcohol-check';
-
+import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
 
 @Component({
   selector: 'glofox-beer-list',

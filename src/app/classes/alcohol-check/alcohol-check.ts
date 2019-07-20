@@ -1,4 +1,4 @@
-import { NON_ALCOHOLIC_VALUE } from '../constants/constants';
+import { NON_ALCOHOLIC_VALUE } from '../../constants/constants';
 
 export class AlcoholCheck {
 
