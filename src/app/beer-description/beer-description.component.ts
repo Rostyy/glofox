@@ -28,4 +28,8 @@ export class BeerDescriptionComponent implements OnInit {
     this.count++;
     this.beer$ = this.beerService.getSingleBeer(this.count);
   }
+
+  getRandomNonAlcBeer() {
+    this.beer$ = this.beerService.getRandomNonAlcBeer();
+  }
 }

@@ -9,6 +9,10 @@
   height: $card-height;
 }
 
+h3 {
+  margin-bottom: 10px;
+}
+
 .beer-card {
   position: relative;
   height: 100%;
@@ -18,6 +22,15 @@
 .left-section {
   margin-right: 20px;
   width: $image-size + 90px;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+
+  .chip {
+    margin-bottom: 10px;
+  }
 }
 
 .description-buttons {

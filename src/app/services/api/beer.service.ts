@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, shareReplay } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
-import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +40,18 @@ export class BeerService {
    */
   getRandomBeer(): Observable<Beer> {
     return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random`).pipe(
+      map((beers: Beer[]) => beers[0]),
+      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
+      shareReplay()
+    );
+  }
+
+  /**
+   * Get random non-alcoholic beer
+   * @returns {Observable<Beer>}
+   */
+  getRandomNonAlcBeer(alcPercent = 0.05): Observable<Beer> {
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random?abv_lt=${alcPercent}`).pipe(
       map((beers: Beer[]) => beers[0]),
       tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
       shareReplay()
