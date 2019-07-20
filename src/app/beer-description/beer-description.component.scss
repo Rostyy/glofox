@@ -17,7 +17,7 @@
 
 .left-section {
   margin-right: 20px;
-  width: $image-size + 20px;
+  width: $image-size + 90px;
 }
 
 .description-buttons {
@@ -33,7 +33,8 @@
 }
 
 .description {
-  margin-right: 20px;
+  margin-right: $main-gap;
+  text-align: justify;
 }
 
 .buttons-section {

@@ -14,11 +14,7 @@ export class SearchFieldComponent implements OnInit {
   constructor(private searchService: SearchService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      term: ['', Validators.pattern('^[0-9A-Za-z\\s\\-]+$')],
-      radioButtonValue: ['name', Validators.required]
-    });
-    this.search();
+    this.initForm();
   }
 
   search() {
@@ -29,5 +25,12 @@ export class SearchFieldComponent implements OnInit {
     if (this.form.valid) {
       this.searchService.changeTerm(searchTerm);
     }
+  }
+
+  private initForm() {
+    this.form = this.fb.group({
+      term: ['', Validators.pattern('^[0-9A-Za-z\\s\\-]+$')],
+      radioButtonValue: ['name', Validators.required]
+    });
   }
 }
