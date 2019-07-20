@@ -11,10 +11,10 @@
         <span>By Description</span>
       </label>
     </div>
+    <div *ngIf="!form.valid" class="error-msg">Only alphanumeric characters, numbers and hyphens allowed</div>
   </div>
   <button type="submit" class="search-btn">Search</button>
 </form>
 
-<div *ngIf="!form.valid" class="error-msg">Only alphanumeric characters, numbers and hyphens allowed</div>
 
 
