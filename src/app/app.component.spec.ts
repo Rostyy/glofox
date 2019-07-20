@@ -7,6 +7,7 @@ import { BeerDescriptionComponent } from './beer-description/beer-description.co
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { SharedModule } from './shared/shared.module';
+import { PaginationComponent } from './pagination/pagination.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +16,8 @@ describe('AppComponent', () => {
         AppComponent,
         BeerDescriptionComponent,
         BeerListComponent,
-        SearchFieldComponent
+        SearchFieldComponent,
+        PaginationComponent
       ],
       imports: [
         HttpClientTestingModule,
