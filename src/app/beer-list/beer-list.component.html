@@ -8,7 +8,7 @@
       <div class="right-section">
         <div class="title-line">
           <h3>{{beer.name}}</h3>
-          <div class="chip" [class.non-alcoholic]="beer.abv <= 0.05">{{beer.abv}} %</div>
+          <div class="chip" [class.non-alcoholic]="isNonAlcoholic(beer.abv)">{{beer.abv}} %</div>
         </div>
         <div class="description">{{beer.description}}</div>
       </div>

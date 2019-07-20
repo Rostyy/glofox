@@ -5,7 +5,7 @@
   </div>
   <div class="description-buttons">
     <div class="description-section" *ngIf="(beer$ | async)?.description">
-      <div class="chip" [class.non-alcoholic]="(beer$ | async)?.abv <= 0.05">{{(beer$ | async)?.abv}} %</div>
+      <div class="chip" [class.non-alcoholic]="isNonAlcoholic((beer$ | async)?.abv)">{{(beer$ | async)?.abv}} %</div>
       <div class="description">{{(beer$ | async)?.description}}</div>
     </div>
     <glofox-mini-loader *ngIf="!(beer$ | async)"></glofox-mini-loader>

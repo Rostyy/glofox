@@ -3,18 +3,21 @@ import { Observable } from 'rxjs/index';
 
 import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
+import { AlcoholCheck } from '../classes/alcohol-check';
 
 @Component({
 selector: 'glofox-beer-description',
   templateUrl: './beer-description.component.html',
   styleUrls: ['./beer-description.component.scss']
 })
-export class BeerDescriptionComponent implements OnInit {
+export class BeerDescriptionComponent extends AlcoholCheck implements OnInit {
 
   beer$: Observable<Beer>;
   count = 0;
 
-  constructor(private beerService: BeerService) { }
+  constructor(private beerService: BeerService) {
+    super();
+  }
 
   ngOnInit() {
     this.getRandomBeer();

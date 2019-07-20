@@ -51,7 +51,7 @@ export class BeerService {
    * @returns {Observable<Beer>}
    */
   getRandomNonAlcBeer(alcPercent = 0.05): Observable<Beer> {
-    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random?abv_lt=${alcPercent}`).pipe(
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random`).pipe(
       map((beers: Beer[]) => beers[0]),
       tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
       shareReplay()
