@@ -6,6 +6,7 @@ import { map, tap, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
+import { BEERS_PER_PAGE } from '../../constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class BeerService {
    * Get list of beers with description
    * @returns {Observable<Beer[]>}
    */
-  getBeers(): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${environment.baseUrl}/beers`);
+  getBeers(beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${environment.baseUrl}/beers?&per_page=${beersPerPage}`);
   }
 
   /**
