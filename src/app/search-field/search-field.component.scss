@@ -3,7 +3,9 @@
 
 .error-msg {
   color: $red-color;
-  margin: -$main-gap/2 0 0 $main-gap;
+  display: flex;
+  align-self: center;
+  margin-left: $main-gap;
 }
 
 input[type="text"] {

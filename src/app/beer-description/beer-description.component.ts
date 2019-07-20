@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/index';
 import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
 import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
+import { BeerProducer } from '../classes/beer-producer/beer-producer';
 
 @Component({
 selector: 'glofox-beer-description',
   templateUrl: './beer-description.component.html',
   styleUrls: ['./beer-description.component.scss']
 })
-export class BeerDescriptionComponent extends AlcoholCheck implements OnInit {
+export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, BeerProducer {
 
   beer$: Observable<Beer>;
   count = 0;
