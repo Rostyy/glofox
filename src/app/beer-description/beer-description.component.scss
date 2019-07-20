@@ -48,6 +48,8 @@ h3 {
 .description {
   margin-right: $main-gap;
   text-align: justify;
+  height: 100%;
+  overflow: scroll;
 }
 
 .buttons-section {
