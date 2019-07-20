@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 :host {
   position: fixed;
@@ -39,5 +40,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+button {
+  @include button-style($blue-color);
 }
 
