@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Beer } from '../../../models';
+import { Beer } from '../../../../models';
 
 @Pipe({
   name: 'searchBy'
