@@ -1,7 +1,12 @@
 @import "variables";
 
 .wrapper {
-  margin-top: $card-height + $body-margin + 2*$main-gap + 38px + 3*$main-gap; // 38px - search height
+  position: fixed;
+  top: $card-height + $body-margin + 2*$main-gap + 38px + 2*$main-gap;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
 }
 
 .beer-card {
@@ -10,7 +15,7 @@
   border-radius: 5px;
   display: flex;
   padding: $main-gap;
-  margin-bottom: $main-gap;
+  margin: 0  $body-margin $main-gap $body-margin;
 
   &:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.32);

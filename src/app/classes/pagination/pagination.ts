@@ -1,6 +1,3 @@
-import { Observable } from 'rxjs';
-import { Beer } from '../../../models';
-
 export abstract class Pagination {
 
   private currentPage = 1;
