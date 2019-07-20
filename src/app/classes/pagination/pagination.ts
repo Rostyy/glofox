@@ -12,7 +12,6 @@ export abstract class Pagination {
 
   constructor() {}
 
-
   abstract pageBack(): void;
 
   abstract pageForward(): void;

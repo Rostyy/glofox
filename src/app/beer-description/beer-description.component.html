@@ -4,11 +4,11 @@
     <img *ngIf="(beer$ | async)?.image_url" src="{{(beer$ | async)?.image_url}}" alt="beer image">
   </div>
   <div class="description-buttons">
+    <glofox-mini-loader *ngIf="!(beer$ | async)" class="loader"></glofox-mini-loader>
     <div class="description-section" *ngIf="(beer$ | async)?.description">
       <div class="chip" [class.non-alcoholic]="isNonAlcoholic((beer$ | async)?.abv)">{{(beer$ | async)?.abv}} %</div>
       <div class="description">{{(beer$ | async)?.description}}</div>
     </div>
-    <glofox-mini-loader *ngIf="!(beer$ | async)"></glofox-mini-loader>
     <div class="buttons-section">
       <button (click)="getAnotherBeer()">Another Beer</button>
       <button (click)="getRandomNonAlcBeer()">Random non alcoholic beer</button>

@@ -1,18 +1,20 @@
-<div *ngIf="(beers$ | async) as beers" class="wrapper">
-  <div *ngFor="let beer of beers |
+<div class="wrapper">
+  <div *ngIf="(beers$ | async) as beers">
+    <div *ngFor="let beer of beers |
      searchBy:(searchService.searchTerms$ | async)?.radioButtonValue:(searchService.searchTerms$ | async)?.term">
-    <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">
-      <div class="image-section">
-        <img src="{{beer.image_url}}" alt="beer image">
-      </div>
-      <div class="right-section">
-        <div class="title-line">
-          <h3>{{beer.name}}</h3>
-          <div class="chip" [class.non-alcoholic]="isNonAlcoholic(beer.abv)">{{beer.abv}} %</div>
+      <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">
+        <div class="image-section">
+          <img src="{{beer.image_url}}" alt="beer image">
         </div>
-        <div class="description">{{beer.description}}</div>
+        <div class="right-section">
+          <div class="title-line">
+            <h3>{{beer.name}}</h3>
+            <div class="chip" [class.non-alcoholic]="isNonAlcoholic(beer.abv)">{{beer.abv}} %</div>
+          </div>
+          <div class="description">{{beer.description}}</div>
+        </div>
       </div>
     </div>
   </div>
+  <glofox-mini-loader class="loader" *ngIf="!(beers$ | async)"></glofox-mini-loader>
 </div>
-

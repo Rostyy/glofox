@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from '../classes/pagination/pagination';
+import { PageSelectionService } from '../services/page-selection/page-selection.service';
 
 @Component({
   selector: 'glofox-pagination',
@@ -8,7 +9,7 @@ import { Pagination } from '../classes/pagination/pagination';
 })
 export class PaginationComponent extends Pagination implements OnInit {
 
-  constructor() {
+  constructor(private pageSelectionService: PageSelectionService) {
     super();
   }
 
@@ -17,11 +18,13 @@ export class PaginationComponent extends Pagination implements OnInit {
   pageBack() {
     if (this.page > 1) {
       this.page --;
+      this.pageSelectionService.changePage(this.page);
     }
   }
 
   pageForward() {
     this.page ++;
+    this.pageSelectionService.changePage(this.page);
   }
 
 }

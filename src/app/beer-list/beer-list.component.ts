@@ -6,6 +6,7 @@ import { Beer } from '../../models';
 import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
 import { SearchService } from '../services/search/search.service';
 import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
+import { PageSelectionService } from '../services/page-selection/page-selection.service';
 
 @Component({
   selector: 'glofox-beer-list',
@@ -18,13 +19,16 @@ export class BeerListComponent extends AlcoholCheck implements OnInit {
 
   constructor(private beerService: BeerService,
               public matchedBeerService: MatchedBeerService,
-              public searchService: SearchService
+              public searchService: SearchService,
+              private pageSelectionService: PageSelectionService
   ) {
     super();
   }
 
   ngOnInit() {
-    this.beers$ = this.beerService.getBeers();
+    this.pageSelectionService.changePage$.subscribe((currentPage: number) => {
+      this.beers$ = this.beerService.getBeers(currentPage);
+    })
   }
 
 }
