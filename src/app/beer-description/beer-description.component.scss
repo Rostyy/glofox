@@ -68,6 +68,11 @@ h3 {
   justify-content: space-around;
 }
 
+.no-beer {
+  font-size: 20px;
+  color: $gray-medium;
+}
+
 button {
   @include button-style($blue-color);
 }

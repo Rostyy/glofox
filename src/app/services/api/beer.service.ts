@@ -65,7 +65,8 @@ export class BeerService {
     const flattenArray = [].concat(...this.cachedBeers);
     const filteredArray = flattenArray.filter((beer: Beer) => beer.abv <= abvValue);
     const randomIndex = UtilsService.getRandomIntInclusive(0, filteredArray.length - 1);
-    return of(filteredArray[randomIndex]).pipe(
+    const beer = filteredArray[randomIndex] ? filteredArray[randomIndex] : [];
+    return of(beer).pipe(
       tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
     );
   }
