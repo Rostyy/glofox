@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, tap, shareReplay } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
@@ -65,7 +65,9 @@ export class BeerService {
     const flattenArray = [].concat(...this.cachedBeers);
     const filteredArray = flattenArray.filter((beer: Beer) => beer.abv <= abvValue);
     const randomIndex = UtilsService.getRandomIntInclusive(0, filteredArray.length - 1);
-    return of(filteredArray[randomIndex]);
+    return of(filteredArray[randomIndex]).pipe(
+      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
+    );
   }
 
   /**

@@ -10,10 +10,11 @@
       <div class="description">{{(beer$ | async)?.description}}</div>
     </div>
     <div class="buttons-section">
-      <button (click)="getAnotherBeer()">Another Beer</button>
+      <button (click)="getSingleBeer()">Another Beer</button>
       <button (click)="getRandomBeer()">Random Beer</button>
       <button (click)="getRandomNonAlcBeer()">Random non alcoholic beer</button>
     </div>
+    <div class="explanation"><sup>*</sup> non-alcoholic: <= {{NON_ALCOHOLIC_VALUE}}% </div>
   </div>
 </div>
 

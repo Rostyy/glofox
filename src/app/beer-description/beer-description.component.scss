@@ -37,7 +37,17 @@ h3 {
   display: flex;
   align-content: center;
   justify-content: space-between;
+  position: relative;
   width: 100%;
+
+  .explanation {
+    position: absolute;
+    bottom: -$main-gap + 7px;
+    right: 2px;
+    font-size: 12px;
+    font-style: italic;
+    color: $gray-medium;
+  }
 }
 
 .description, glofox-mini-loader {

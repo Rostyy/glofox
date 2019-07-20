@@ -5,6 +5,7 @@ import { BeerService } from '../services/api/beer.service';
 import { Beer } from '../../models';
 import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
 import { BeerProducer } from '../classes/beer-producer/beer-producer';
+import { NON_ALCOHOLIC_VALUE } from '../constants/constants';
 
 @Component({
 selector: 'glofox-beer-description',
@@ -15,6 +16,7 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
 
   beer$: Observable<Beer>;
   count = 0;
+  NON_ALCOHOLIC_VALUE = NON_ALCOHOLIC_VALUE;
 
   constructor(private beerService: BeerService) {
     super();
@@ -28,7 +30,7 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
     this.beer$ = this.beerService.getRandomBeer();
   }
 
-  getAnotherBeer() {
+  getSingleBeer() {
     this.count++;
     this.beer$ = this.beerService.getSingleBeer(this.count);
   }
