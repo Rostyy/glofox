@@ -18,12 +18,8 @@ export class SearchFieldComponent implements OnInit {
   }
 
   search() {
-    const searchTerm = {
-      term: this.form.value.term,
-      radioButtonValue: this.form.value.radioButtonValue
-    };
     if (this.form.valid) {
-      this.searchService.changeTerm(searchTerm);
+      this.searchService.changeTerm(this.form.value);
     }
   }
 
@@ -32,5 +28,11 @@ export class SearchFieldComponent implements OnInit {
       term: ['', Validators.pattern('^[0-9A-Za-z\\s\\-]+$')],
       radioButtonValue: ['name', Validators.required]
     });
+  }
+
+  handleClear() {
+    if (!this.form.value.term) {
+      this.searchService.changeTerm(this.form.value);
+    }
   }
 }

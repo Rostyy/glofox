@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="search()">
   <div class="search-radio">
-    <input type="text"  formControlName="term" placeholder="Search beer ...">
+    <input type="text"  formControlName="term" (input)="handleClear()" placeholder="Search beer ...">
     <div class="radio-btns">
       <label>
         <input type="radio" value="name" formControlName="radioButtonValue">
