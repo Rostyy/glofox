@@ -28,7 +28,7 @@ export class BeerListComponent extends AlcoholCheck implements OnInit, OnDestroy
 
   ngOnInit() {
     this.pageSubscription = this.pageSelectionService.changePage$.subscribe((currentPage: number) => {
-      this.beers$ = this.beerService.getBeers(currentPage);
+      this.beers$ = this.beerService.getBeers();
     });
   }
 

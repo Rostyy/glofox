@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Beer } from '../../../models/beer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,15 @@ export class UtilsService {
 
   static checkType(obj: object): boolean {
     return typeof obj === 'object';
+  }
+
+  /**
+   * Selects beer randomly from array
+   * @param {Beer[]} beers
+   * @returns {Beer}
+   */
+  static randomBeerSelector(beers: Beer[]) {
+    const randomIndex = UtilsService.getRandomIntInclusive(0, beers.length - 1);
+    return beers[randomIndex];
   }
 }

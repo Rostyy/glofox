@@ -21,20 +21,22 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
   objectKeys = Object.keys;
   UtilsService = UtilsService;
 
-  private assignBeer = (beer: Beer) => {
-    this.showLoader = false;
-    this.beer = beer;
-  };
-
   constructor(private beerService: BeerService,
               private matchedBeerService: MatchedBeerService) {
     super();
   }
 
   ngOnInit() {
-    this.getRandomBeer();
+    this.getInitRandomBeer();
     this.matchedBeerService.changeBeer$.subscribe((beer: Beer) => {
-      console.log('main beer', beer);
+      this.beer = beer;
+    });
+  }
+
+  getInitRandomBeer() {
+    this.showLoader = true;
+    this.beerService.getInitRandomBeer().subscribe((beer: Beer) => {
+      this.showLoader = false;
       this.beer = beer;
     });
   }
@@ -44,12 +46,11 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
   }
 
   getRandomBeer() {
-    this.showLoader = true;
-    this.beerService.getRandomBeer().subscribe(this.assignBeer);
+    this.beerService.getRandomBeer();
   }
 
   getRandomNonAlcBeer() {
-    this.beerService.getRandomNonAlcBeer().subscribe(this.assignBeer);
+    this.beerService.getRandomNonAlcBeer();
   }
 
 
