@@ -6,7 +6,7 @@ import { map, tap, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
-import { BEERS_PER_PAGE, INIT_PAGE, NON_ALCOHOLIC_VALUE } from '../../constants/constants';
+import { BEERS_PER_PAGE, NON_ALCOHOLIC_VALUE } from '../../constants/constants';
 import { UtilsService } from '../utils/utils.service';
 import { ExcludeKegBeerPipe } from '../../shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
 import { PageSelectionService } from '../page-selection/page-selection.service';
@@ -18,7 +18,6 @@ import { BeerIterator } from '../../classes/beer-iterator/beer-iterator';
 export class BeerService extends BeerIterator {
 
   private cachedBeers = [] as Beer[][];
-  private cachedNonAlcBeers: Beer[];
 
   constructor(
     private http: HttpClient,

@@ -53,5 +53,4 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
     this.beerService.getRandomNonAlcBeer();
   }
 
-
 }
