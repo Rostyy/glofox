@@ -69,4 +69,22 @@ input[type="text"] {
   &.non-alcoholic {
     background-color: $green-color;
   }
+
+  &.violet {
+    background-color: $violet-color;
+  }
+
+  &.yellow {
+    background-color: $yellow-color;
+  }
+}
+
+.right-chips {
+  display: flex;
+  justify-content: space-between;
+  padding-right: $main-gap;
+
+  .chip + .chip {
+    margin-left: $main-gap;
+  }
 }

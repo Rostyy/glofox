@@ -5,12 +5,18 @@
   </div>
   <div class="description-buttons">
     <glofox-mini-loader *ngIf="showLoader" class="loader"></glofox-mini-loader>
-    <div>
+    <div class="whole-card">
       <div class="no-beer" *ngIf="!showLoader && UtilsService.checkType(beer) && objectKeys(beer)?.length===0">
         <span>No beer found for your action</span>
       </div>
       <div class="description-section" *ngIf="!showLoader && beer?.description">
-        <div class="chip" [class.non-alcoholic]="isNonAlcoholic(beer.abv)">{{beer?.abv}} %</div>
+        <div class="chips">
+          <div class="chip" [class.non-alcoholic]="isNonAlcoholic(beer.abv)">{{beer?.abv}} %</div>
+          <div class="right-chips">
+            <div class="chip yellow">{{beer?.tagline}}</div>
+            <div class="chip violet"> First brewed: {{beer?.first_brewed}}</div>
+          </div>
+        </div>
         <div class="description">{{beer.description}}</div>
       </div>
     </div>
