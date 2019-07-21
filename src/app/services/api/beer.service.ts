@@ -85,7 +85,7 @@ export class BeerService {
    * @param {number} abvValue
    * @returns {Observable<Beer>}
    */
-  getRandomNonAlcBeer(abvValue = NON_ALCOHOLIC_VALUE): void{
+  getRandomNonAlcBeer(abvValue = NON_ALCOHOLIC_VALUE): void {
     const arrPageIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
     if (this.cachedBeers.length) {
       const currentPageBeers = this.cachedBeers[arrPageIndex];

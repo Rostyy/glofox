@@ -29,4 +29,19 @@ describe('BeerDescriptionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should test getSingleBeer returns void', () => {
+    const value = component.getSingleBeer();
+    expect(value).toBeFalsy();
+  });
+
+  it('should test getRandomBeer returns void', () => {
+    const value = component.getRandomBeer();
+    expect(value).toBeFalsy();
+  });
+
+  it('should test getRandomNonAlcBeer returns void', () => {
+    const value = component.getRandomNonAlcBeer();
+    expect(value).toBeFalsy();
+  });
 });
