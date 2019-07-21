@@ -49,7 +49,7 @@ Because lack of time:
 
 ## Technical description
 IMPORTANT: since I checked all beers from [PUNKAPI](https://punkapi.com/) there are no beers with `abv` less then `0.05%` (as mentioned in task description), so I chose `3%` as threshold for nonalcoholic beer to be able to visualize "Random non alcoholic beer" button functionality.
-
+ 
 I tried to use here SOLID, DRY, KISS principles.
 
 In this app I used cached strategy: when user first starts app beers from first page is loaded and cached. When user clicks next page - beers from next page is loaded and cached, so when user goes back - beers are fetched from the cache. This is valid for all pages of course.
@@ -66,7 +66,9 @@ Unit tests are provided and passed successfully.
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Run `ng test --coverage` create tests report. This can be found in `coverage` folder in root of project. Each component, service, pipe and other entities can be checked separately (there are corresponding files). Main file here `glofox/src/index.htm`.
+Run `ng test --codeCoverage` create tests report (so called coverage Istanbul Reporter). This can be found in `coverage` folder in root of project. Each component, service, pipe and other entities can be checked separately (there are corresponding files). Main file here `glofox/src/index.htm`.
+
+App was tested manually in Chrome browser only (version 75).
 
 ### Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
