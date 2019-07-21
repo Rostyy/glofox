@@ -44,6 +44,7 @@ User can click following buttons:
 Because lack of time:
 1. Still need to be finished "Next page" functionality (button) because user can click it now infinite time (as beers are cached this can cause performance issue), so this button should be disabled when all beers are fetched.
 2. Also I would invest more time in template structure, I think it can be done better.
+3. Mobile view.
 
 ## Technical description
 IMPORTANT: since I checked all beers from [PUNKAPI](https://punkapi.com/) there are no beers with `abv` less then `0.05%` (as mentioned in task description), so I chose `3%` as threshold for nonalcoholic beer to be able to visualize "Random non alcoholic beer" button functionality.
@@ -64,7 +65,7 @@ Unit tests are provided and passed successfully.
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Run `ng test --coverage` create tests report. This can be found in `coverage` folder in root of project. Each component, service, pipe and other entities can be checked separately (there are corresponding files).
+Run `ng test --coverage` create tests report. This can be found in `coverage` folder in root of project. Each component, service, pipe and other entities can be checked separately (there are corresponding files). Main file here `glofox/src/index.htm`.
 
 ### Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

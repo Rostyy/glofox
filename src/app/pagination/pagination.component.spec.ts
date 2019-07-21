@@ -22,4 +22,16 @@ describe('PaginationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should test pageForward', () => {
+    component.page = 1;
+    component.pageForward();
+    expect(component.page).toBe(2);
+  });
+
+  it('should test pageBack', () => {
+    component.page = 4;
+    component.pageBack();
+    expect(component.page).toBe(3);
+  });
 });
