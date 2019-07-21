@@ -45,6 +45,7 @@ Because lack of time:
 1. Still need to be finished "Next page" functionality (button) because user can click it now infinite time (as beers are cached this can cause performance issue), so this button should be disabled when all beers are fetched.
 2. Also I would invest more time in template structure, I think it can be done better.
 3. Mobile view.
+4. Improve unit tests.
 
 ## Technical description
 IMPORTANT: since I checked all beers from [PUNKAPI](https://punkapi.com/) there are no beers with `abv` less then `0.05%` (as mentioned in task description), so I chose `3%` as threshold for nonalcoholic beer to be able to visualize "Random non alcoholic beer" button functionality.

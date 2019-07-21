@@ -24,4 +24,14 @@ describe('SearchFieldComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should test search returns void', () => {
+    const value = component.search();
+    expect(value).toBeFalsy();
+  });
+
+  it('should test handleClear returns void', () => {
+    const value = component.handleClear();
+    expect(value).toBeFalsy();
+  });
 });
