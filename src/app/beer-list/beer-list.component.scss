@@ -29,11 +29,16 @@
 .title-line {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
 
   h3 {
     margin-right: 15px;
   }
+}
+
+.name-chip {
+  display: flex;
 }
 
 .image-section {
@@ -47,6 +52,7 @@
 .right-section {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .description {
     display: flex;

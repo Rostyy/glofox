@@ -50,6 +50,10 @@ h3 {
   }
 }
 
+.whole-card {
+  width: 100%;
+}
+
 .description, glofox-mini-loader {
   display: flex;
   align-self: center;
@@ -59,6 +63,7 @@ h3 {
   margin-right: $main-gap;
   text-align: justify;
   height: 100%;
+  align-self: flex-start;
   overflow: scroll;
 }
 
@@ -71,6 +76,11 @@ h3 {
 .no-beer {
   font-size: 20px;
   color: $gray-medium;
+}
+
+.chips {
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
