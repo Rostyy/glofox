@@ -8,6 +8,7 @@ import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
 import { BEERS_PER_PAGE, INIT_PAGE, NON_ALCOHOLIC_VALUE } from '../../constants/constants';
 import { UtilsService } from '../utils/utils.service';
+import { ExcludeKegBeerPipe } from '../../shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,13 @@ import { UtilsService } from '../utils/utils.service';
 export class BeerService {
 
   private cachedBeers = [] as Beer[][];
+  private cachedNonAlcBeers: Beer[];
 
-  constructor(private http: HttpClient, private matchedBeerService: MatchedBeerService) { }
+  constructor(
+    private http: HttpClient,
+    private matchedBeerService: MatchedBeerService,
+    private excludeKegBeerPipe: ExcludeKegBeerPipe
+  ) { }
 
   /**
    * Get list of beers with description (if cached - get from cache)
@@ -57,18 +63,38 @@ export class BeerService {
   }
 
   /**
-   * Get random non-alcoholic beer from cached array of beers
+   * Get random non-alcoholic beer
    * @param {number} abvValue
    * @returns {Observable<Beer>}
    */
   getRandomNonAlcBeer(abvValue = NON_ALCOHOLIC_VALUE): Observable<Beer> {
-    const flattenArray = [].concat(...this.cachedBeers);
-    const filteredArray = flattenArray.filter((beer: Beer) => beer.abv <= abvValue);
-    const randomIndex = UtilsService.getRandomIntInclusive(0, filteredArray.length - 1);
-    const beer = filteredArray[randomIndex] ? filteredArray[randomIndex] : [];
-    return of(beer).pipe(
-      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
-    );
+    if (!this.cachedNonAlcBeers) {
+      // added 0.01 because it's this query doesn't include abvValu number, so only "<" not "<="
+      return this.http.get<Beer[]>(`${environment.baseUrl}/beers?abv_lt=${+abvValue + 0.001}`).pipe(
+        map((beers: Beer[]) => this.excludeKegBeerPipe.transform(beers)),
+        tap((beers: Beer[]) => this.cachedNonAlcBeers = beers),
+        map((beers: Beer[]) => this.randomBeerSelector(beers)),
+        tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
+        // send {} when there is no beer
+        map((beer: Beer) => beer ? beer : {} as Beer),
+        shareReplay()
+      );
+    } else {
+      const beer = this.randomBeerSelector(this.cachedNonAlcBeers);
+      this.matchedBeerService.changeBeer(beer);
+      // send {} when there is no beer
+      return of(beer ? beer : {} as Beer);
+    }
+  }
+
+  /**
+   * Selects beer randomly from array
+   * @param {Beer[]} beers
+   * @returns {Beer}
+   */
+  private randomBeerSelector(beers: Beer[]) {
+    const randomIndex = UtilsService.getRandomIntInclusive(0, beers.length - 1);
+    return beers[randomIndex];
   }
 
   /**
