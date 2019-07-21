@@ -1,5 +1,7 @@
 /* tslint:disable */
-export const beersArr = [
+import {Beer} from '../../models/beer.model';
+
+export const beersArr: Beer[] = [
   {
     "id":1,
     "name":"Buzz",
@@ -1253,4 +1255,4 @@ export const beersArr = [
   }
 ];
 
-export const testBeer = beersArr[1];
+export const testBeer: Beer = beersArr[1];
