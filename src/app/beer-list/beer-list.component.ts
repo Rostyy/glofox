@@ -33,7 +33,9 @@ export class BeerListComponent extends AlcoholCheck implements OnInit, OnDestroy
   }
 
   ngOnDestroy() {
-    this.pageSubscription.unsubscribe();
+    if (this.pageSubscription) {
+      this.pageSubscription.unsubscribe();
+    }
   }
 
 }

@@ -25,7 +25,7 @@ export class UtilsService {
    * @param {Object} obj
    * @returns {boolean}
    */
-  static checkType(obj: object): boolean {
+  static ifObjectType(obj: object): boolean {
     return typeof obj === 'object';
   }
 

@@ -6,7 +6,7 @@
   <div class="description-buttons">
     <glofox-mini-loader *ngIf="showLoader" class="loader"></glofox-mini-loader>
     <div class="whole-card">
-      <div class="no-beer" *ngIf="!showLoader && UtilsService.checkType(beer) && objectKeys(beer)?.length===0">
+      <div class="no-beer" *ngIf="!showLoader && UtilsService.ifObjectType(beer) && objectKeys(beer)?.length===0">
         <span>No beer found for your action</span>
       </div>
       <div class="description-section" *ngIf="!showLoader && beer?.description">
