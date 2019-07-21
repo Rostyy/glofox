@@ -1,8 +1,12 @@
+import { BeerIterator } from '../beer-iterator/beer-iterator';
+
 export abstract class Pagination {
 
   private currentPage = 1;
 
   set page(currentPage: number) {
+    // after page change reset index iterator ("Another beer" functionality)
+    BeerIterator.getBeerIterator().beerIndex = 0;
     this.currentPage = currentPage;
   }
 
@@ -10,7 +14,7 @@ export abstract class Pagination {
     return this.currentPage;
   }
 
-  constructor() {}
+  constructor() { }
 
   abstract pageBack(): void;
 

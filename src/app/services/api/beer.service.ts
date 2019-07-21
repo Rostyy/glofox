@@ -15,7 +15,7 @@ import { BeerIterator } from '../../classes/beer-iterator/beer-iterator';
 @Injectable({
   providedIn: 'root'
 })
-export class BeerService extends BeerIterator {
+export class BeerService {
 
   private cachedBeers = [] as Beer[][];
 
@@ -24,12 +24,7 @@ export class BeerService extends BeerIterator {
     private matchedBeerService: MatchedBeerService,
     private excludeKegBeerPipe: ExcludeKegBeerPipe,
     private pageSelectionService: PageSelectionService
-  ) {
-    super();
-    this.pageSelectionService.changePage$.subscribe((newPage: number) => {
-      this.beerIndex = 0;
-    });
-  }
+  ) { }
 
   /**
    * Get random beer
@@ -62,10 +57,10 @@ export class BeerService extends BeerIterator {
     const arrPageIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
     if (this.cachedBeers.length) {
       const currentPageBeers = this.cachedBeers[arrPageIndex];
-      const beer = currentPageBeers[this.beerIndex];
+      const beer = currentPageBeers[BeerIterator.getBeerIterator().beerIndex];
       if (beer) {
         this.matchedBeerService.changeBeer(beer);
-        this.beerIndex++;
+        BeerIterator.getBeerIterator().beerIndex++;
       }
     } else {
       this.matchedBeerService.changeBeer({ } as Beer);
