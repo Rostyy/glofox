@@ -6,6 +6,7 @@ import { AlcoholCheck } from '../classes/alcohol-check/alcohol-check';
 import { BeerProducer } from '../classes/beer-producer/beer-producer';
 import { NON_ALCOHOLIC_VALUE } from '../constants/constants';
 import { UtilsService } from '../services/utils/utils.service';
+import { MatchedBeerService } from '../services/matched-beer/matched-beer.service';
 
 @Component({
 selector: 'glofox-beer-description',
@@ -15,7 +16,6 @@ selector: 'glofox-beer-description',
 export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, BeerProducer {
 
   beer: Beer;
-  count = 0;
   NON_ALCOHOLIC_VALUE = NON_ALCOHOLIC_VALUE;
   showLoader = false;
   objectKeys = Object.keys;
@@ -26,23 +26,26 @@ export class BeerDescriptionComponent extends AlcoholCheck implements OnInit, Be
     this.beer = beer;
   };
 
-  constructor(private beerService: BeerService) {
+  constructor(private beerService: BeerService,
+              private matchedBeerService: MatchedBeerService) {
     super();
   }
 
   ngOnInit() {
     this.getRandomBeer();
+    this.matchedBeerService.changeBeer$.subscribe((beer: Beer) => {
+      console.log('main beer', beer);
+      this.beer = beer;
+    });
+  }
+
+  getSingleBeer() {
+    this.beerService.getSingleBeer();
   }
 
   getRandomBeer() {
     this.showLoader = true;
     this.beerService.getRandomBeer().subscribe(this.assignBeer);
-  }
-
-  getSingleBeer() {
-    this.showLoader = true;
-    this.count++;
-    this.beerService.getSingleBeer(this.count).subscribe(this.assignBeer);
   }
 
   getRandomNonAlcBeer() {

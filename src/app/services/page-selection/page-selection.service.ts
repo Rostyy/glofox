@@ -7,7 +7,7 @@ import { INIT_PAGE} from '../../constants/constants';
 })
 export class PageSelectionService {
 
-  private changePageSubject = new BehaviorSubject<number>(INIT_PAGE);
+  changePageSubject = new BehaviorSubject<number>(INIT_PAGE);
   changePage$ = this.changePageSubject.asObservable();
 
   constructor() { }

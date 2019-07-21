@@ -1,7 +1,6 @@
 <div class="wrapper">
   <div *ngIf="(beers$ | async) as beers">
     <div *ngFor="let beer of beers |
-    excludeKegBeer |
     searchBy:(searchService.searchTerms$ | async)?.radioButtonValue:(searchService.searchTerms$ | async)?.term">
       <div *ngIf="beer.name && beer.description" [class.selected-beer]="beer.id === (matchedBeerService.changeBeer$ | async)?.id" class="beer-card">
         <div class="image-section">

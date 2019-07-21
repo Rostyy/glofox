@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BeerListComponent } from './beer-list.component';
 import { SearchFieldComponent } from '../search-field/search-field.component';
 import { SharedModule } from '../shared/shared.module';
+import { ExcludeKegBeerPipe } from '../shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
 
 describe('BeerListComponent', () => {
   let component: BeerListComponent;
@@ -13,6 +14,7 @@ describe('BeerListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BeerListComponent, SearchFieldComponent ],
+      providers: [ ExcludeKegBeerPipe ],
       imports: [ HttpClientTestingModule, ReactiveFormsModule, SharedModule ]
     })
     .compileComponents();
