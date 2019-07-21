@@ -1253,4 +1253,4 @@ export const beersArr = [
   }
 ];
 
-export const testBeer = beersArr[0];
+export const testBeer = beersArr[1];

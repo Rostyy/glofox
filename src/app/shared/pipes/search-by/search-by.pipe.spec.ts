@@ -32,7 +32,7 @@ describe('SearchByPipe', () => {
     expect(pipe.transform(testBeers , 'name', 'dasv dgbuzz')).toEqual([] as Beer[]);
   });
 
-  it('search trough pipe', () => {
+  it('search trough pipe with buzz name', () => {
     expect(pipe.transform(testBeers, 'name', 'buzz')).toEqual(testBeers);
   });
 });
