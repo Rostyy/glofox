@@ -6,8 +6,11 @@ import { map, tap, shareReplay } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Beer } from '../../../models';
 import { MatchedBeerService } from '../matched-beer/matched-beer.service';
-import { BEERS_PER_PAGE, INIT_PAGE, NON_ALCOHOLIC_VALUE } from '../../constants/constants';
+import { BEERS_PER_PAGE, NON_ALCOHOLIC_VALUE } from '../../constants/constants';
 import { UtilsService } from '../utils/utils.service';
+import { ExcludeKegBeerPipe } from '../../shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
+import { PageSelectionService } from '../page-selection/page-selection.service';
+import { BeerIterator } from '../../classes/beer-iterator/beer-iterator';
 
 @Injectable({
   providedIn: 'root'
@@ -16,39 +19,18 @@ export class BeerService {
 
   private cachedBeers = [] as Beer[][];
 
-  constructor(private http: HttpClient, private matchedBeerService: MatchedBeerService) { }
-
-  /**
-   * Get list of beers with description (if cached - get from cache)
-   * @param {number} currentPage
-   * @param {number} beersPerPage
-   * @returns {Observable<Beer[]>}
-   */
-  getBeers(currentPage = INIT_PAGE, beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
-    const arrIndex = currentPage - 1;
-    return !this.cachedBeers[arrIndex] ?
-      this.getAllBeers(currentPage, beersPerPage) :
-      of(this.cachedBeers[arrIndex]);
-  }
-
-  /**
-   * Get single beer
-   * @param {number} count
-   * @returns {Observable<Beer>}
-   */
-  getSingleBeer(count: number): Observable<Beer> {
-    return this.http.get<Beer[]>(`${environment.baseUrl}/beers/${count}`).pipe(
-      map((beers: Beer[]) => beers[0]),
-      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
-      shareReplay()
-    );
-  }
+  constructor(
+    private http: HttpClient,
+    private matchedBeerService: MatchedBeerService,
+    private excludeKegBeerPipe: ExcludeKegBeerPipe,
+    private pageSelectionService: PageSelectionService
+  ) { }
 
   /**
    * Get random beer
    * @returns {Observable<Beer>}
    */
-  getRandomBeer(): Observable<Beer> {
+  getInitRandomBeer(): Observable<Beer> {
     return this.http.get<Beer[]>(`${environment.baseUrl}/beers/random`).pipe(
       map((beers: Beer[]) => beers[0]),
       tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
@@ -57,28 +39,77 @@ export class BeerService {
   }
 
   /**
-   * Get random non-alcoholic beer from cached array of beers
+   * Get list of beers with description (if cached - get from cache)
+   * @param {number} beersPerPage
+   * @returns {Observable<Beer[]>}
+   */
+  getBeers(beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
+    const arrIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
+    return !this.cachedBeers[arrIndex] ?
+      this.getAllBeers(beersPerPage) :
+      of(this.cachedBeers[arrIndex]);
+  }
+
+  /**
+   * Get next beer from beers list in current page
+   */
+  getSingleBeer(): void {
+    const arrPageIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
+    if (this.cachedBeers.length) {
+      const currentPageBeers = this.cachedBeers[arrPageIndex];
+      const beer = currentPageBeers[BeerIterator.getBeerIterator().beerIndex];
+      if (beer) {
+        this.matchedBeerService.changeBeer(beer);
+        BeerIterator.getBeerIterator().beerIndex++;
+      }
+    } else {
+      this.matchedBeerService.changeBeer({ } as Beer);
+    }
+  }
+
+  getRandomBeer(): void {
+    const arrPageIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
+    if (this.cachedBeers.length) {
+      const currentPageBeers = this.cachedBeers[arrPageIndex];
+      const beer = UtilsService.randomBeerSelector(currentPageBeers);
+      if (beer) {
+        this.matchedBeerService.changeBeer(beer);
+      }
+    } else {
+      this.matchedBeerService.changeBeer({ } as Beer);
+    }
+  }
+
+  /**
+   * Get random non-alcoholic beer
    * @param {number} abvValue
    * @returns {Observable<Beer>}
    */
-  getRandomNonAlcBeer(abvValue = NON_ALCOHOLIC_VALUE): Observable<Beer> {
-    const flattenArray = [].concat(...this.cachedBeers);
-    const filteredArray = flattenArray.filter((beer: Beer) => beer.abv <= abvValue);
-    const randomIndex = UtilsService.getRandomIntInclusive(0, filteredArray.length - 1);
-    const beer = filteredArray[randomIndex] ? filteredArray[randomIndex] : [];
-    return of(beer).pipe(
-      tap( (beer: Beer) => this.matchedBeerService.changeBeer(beer)),
-    );
+  getRandomNonAlcBeer(abvValue = NON_ALCOHOLIC_VALUE): void{
+    const arrPageIndex = this.pageSelectionService.changePageSubject.getValue() - 1;
+    if (this.cachedBeers.length) {
+      const currentPageBeers = this.cachedBeers[arrPageIndex];
+      const nonAlcBeers = currentPageBeers.filter((beerFromPage: Beer) => beerFromPage.abv <= abvValue);
+      const beer = UtilsService.randomBeerSelector(nonAlcBeers);
+      if (beer) {
+        this.matchedBeerService.changeBeer(beer);
+      } else {
+        this.matchedBeerService.changeBeer({ } as Beer);
+      }
+    } else {
+      this.matchedBeerService.changeBeer({ } as Beer);
+    }
   }
 
   /**
    * Get list of beers with description
-   * @param {number} currentPage
    * @param {number} beersPerPage
    * @returns {Observable<Beer[]>}
    */
-  private getAllBeers(currentPage = INIT_PAGE, beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
+  private getAllBeers(beersPerPage = BEERS_PER_PAGE): Observable<Beer[]> {
+    const currentPage = this.pageSelectionService.changePageSubject.getValue();
     return this.http.get<Beer[]>(`${environment.baseUrl}/beers?page=${currentPage}&per_page=${beersPerPage}`).pipe(
+      map((beers: Beer[]) => this.excludeKegBeerPipe.transform(beers)),
       tap((beersFromCurrentPage: Beer[]) => this.cachedBeers.push(beersFromCurrentPage)),
       shareReplay()
     );

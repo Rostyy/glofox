@@ -9,6 +9,7 @@ import { SearchFieldComponent } from './search-field/search-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ExcludeKegBeerPipe } from './shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     HttpClientModule,
     SharedModule
   ],
-  providers: [],
+  providers: [ExcludeKegBeerPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

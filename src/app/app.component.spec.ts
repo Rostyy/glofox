@@ -8,6 +8,7 @@ import { BeerListComponent } from './beer-list/beer-list.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { SharedModule } from './shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ExcludeKegBeerPipe } from './shared/pipes/exclude-keg-beer/exclude-keg-beer.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
         SearchFieldComponent,
         PaginationComponent
       ],
+      providers: [ ExcludeKegBeerPipe ],
       imports: [
         HttpClientTestingModule,
         ReactiveFormsModule,
